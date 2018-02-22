@@ -15,5 +15,11 @@
   "bugs": {
     "url": "https://github.com/matheusiacono/cadastro-easy/issues"
   },
-  "homepage": "https://github.com/matheusiacono/cadastro-easy#readme"
+  "homepage": "https://github.com/matheusiacono/cadastro-easy#readme",
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-plugin-transform-react-jsx": "^6.24.1",
+    "babel-preset-env": "^1.6.1"
+  }
 }
