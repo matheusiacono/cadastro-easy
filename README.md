@@ -75,7 +75,7 @@ npm run e2e
 
 ## Style guide
 
-O projeto utiliza o style guide do airbnb para javascript com a sintaxe do `jsx` liberada. A ferramenta usada para o linting é o `eslint` e pode ser executada com o seguinte comando:
+O projeto utiliza o [style guide do airbnb](https://github.com/airbnb/javascript) para javascript com a sintaxe do `jsx` liberada. A ferramenta usada para o linting é o `eslint` e pode ser executada com o seguinte comando:
 
 ```shell
 npm run lint
