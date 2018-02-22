@@ -1,0 +1,19 @@
+{
+  "name": "cadastro-easy",
+  "version": "1.0.0",
+  "description": "Desafio",
+  "main": "src/main.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matheusiacono/cadastro-easy.git"
+  },
+  "author": "Matheus Iacono",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/matheusiacono/cadastro-easy/issues"
+  },
+  "homepage": "https://github.com/matheusiacono/cadastro-easy#readme"
+}
