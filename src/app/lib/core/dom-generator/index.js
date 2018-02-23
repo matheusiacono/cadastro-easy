@@ -1,6 +1,10 @@
 import setProp from '../../utils/set-prop';
 
 export default class DomGenerator {
+  generate(parent, node) {
+    parent.appendChild(this.createElement(node));
+  }
+
   createElement(node) {
     const element =
       typeof node === 'string' || typeof node === 'number'

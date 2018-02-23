@@ -119,3 +119,18 @@ describe('DomGenerator.createElement', () => {
     });
   });
 });
+
+describe('DomGenerator.generate', () => {
+  const generator = new DomGenerator();
+  beforeEach(() => {
+    document.body.innerHTML = '<div id="app"></div>';
+  });
+
+  it('should generate dom elements from VirtualNode', () => {
+    const div = <div />;
+    const container = document.getElementById('app');
+    generator.generate(container, div);
+
+    expect(container.innerHTML).toEqual('<div></div>');
+  });
+});
