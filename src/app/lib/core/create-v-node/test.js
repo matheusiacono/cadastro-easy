@@ -10,6 +10,16 @@ describe('jsx syntax', () => {
     expect(vNode.props).toEqual({ foo: 'bar' });
     expect(vNode.children).toEqual([]);
   });
+
+  it('should return nested as children', () => {
+    const vNode = (
+      <div>
+        <span />
+      </div>
+    );
+
+    expect(vNode.children[0].type).toEqual('span');
+  });
 });
 
 describe('createVNode', () => {
