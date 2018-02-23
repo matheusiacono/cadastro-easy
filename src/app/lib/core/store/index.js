@@ -10,4 +10,8 @@ export default class Store {
   setStore(newStore) {
     this.store = { ...this.store, ...newStore };
   }
+
+  clearStore() {
+    this.store = {};
+  }
 }

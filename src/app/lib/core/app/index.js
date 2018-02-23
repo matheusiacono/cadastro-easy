@@ -6,6 +6,7 @@ export default class App {
     this.container = container;
 
     this.generator = new DomGenerator();
+    this.component.reRender(() => this.run());
   }
 
   run() {

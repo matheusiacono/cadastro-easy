@@ -1,10 +1,10 @@
-/* globals describe it expect */
+/* globals jest describe it expect */
 import App from '.';
 import createVNode from '../create-v-node';
 
 describe('App', () => {
   it('should create instance of App', () => {
-    const component = 'component';
+    const component = createVNode('component');
     const container = 'container';
     const app = new App(component, container);
 
@@ -22,5 +22,14 @@ describe('App', () => {
     app.run();
 
     expect(container.innerHTML).toEqual('<div></div>');
+  });
+
+  it('should call run method after reRender on the component been called', () => {
+    const mockFn = jest.fn();
+    const vNode = <div />;
+    const app = new App(vNode, 'container');
+    app.run = mockFn;
+    vNode.applyState();
+    expect(mockFn).toBeCalled();
   });
 });

@@ -1,7 +1,11 @@
-/* globals describe it expect jest */
+/* globals describe it expect beforeEach jest */
 import VirtualNode from '.';
 
 describe('Virtual Node', () => {
+  beforeEach(() => {
+    VirtualNode.clearState();
+    VirtualNode.clearActions();
+  });
   it('should create instance', () => {
     const type = 'a';
     const props = { x: 1 };
@@ -32,7 +36,7 @@ describe('Virtual Node', () => {
   });
 
   describe('Virtual Node global actions', () => {
-    it('should share state between instances', () => {
+    it('should share actions between instances', () => {
       const mockFn = jest.fn();
       const testAction = {
         foo() {
@@ -47,7 +51,47 @@ describe('Virtual Node', () => {
       const bActions = nodeB.getActions();
       bActions.foo();
 
-      expect(bActions).toEqual(testAction);
+      expect(mockFn).toBeCalled();
+    });
+
+    it('should call action passing state', () => {
+      const testAction = {
+        foo: () => (state) => {
+          expect(state).toEqual({});
+        },
+      };
+      const nodeA = new VirtualNode();
+      nodeA.setActions(testAction);
+      const aActions = nodeA.getActions();
+      aActions.foo();
+    });
+
+    it('should change state when returned', () => {
+      const testState = { foo: 'bar' };
+
+      const testAction = {
+        foo: () => testState,
+      };
+      const nodeA = new VirtualNode();
+      nodeA.setActions(testAction);
+      const aActions = nodeA.getActions();
+      aActions.foo();
+      const aState = nodeA.getState();
+      expect(aState).toEqual(testState);
+    });
+
+    it('should call reRender cb when return state', () => {
+      const testAction = {
+        foo: () => ({}),
+      };
+      const mockFn = jest.fn();
+
+      const nodeA = new VirtualNode();
+      nodeA.reRender(mockFn);
+      nodeA.setActions(testAction);
+      const aActions = nodeA.getActions();
+      aActions.foo();
+
       expect(mockFn).toBeCalled();
     });
   });
