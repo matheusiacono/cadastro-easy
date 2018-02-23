@@ -29,3 +29,18 @@ describe('createVNode', () => {
     expect(vNode instanceof VirtualNode).toBeTruthy();
   });
 });
+
+describe('use createVNode to create components', () => {
+  it('should create vNode from component', () => {
+    class MyDiv extends VirtualNode {
+      render() {
+        return <div {...this.props} />;
+      }
+    }
+
+    const vNode = <MyDiv test />;
+
+    expect(vNode.type).toEqual('div');
+    expect(vNode.props).toEqual({ test: true });
+  });
+});
