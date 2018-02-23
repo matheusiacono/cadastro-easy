@@ -1,3 +1,5 @@
+import setProp from '../../utils/set-prop';
+
 export default class DomGenerator {
   createElement(node) {
     const element =
@@ -12,6 +14,12 @@ export default class DomGenerator {
         .forEach((child) => {
           element.appendChild(child);
         });
+    }
+
+    if (node.props) {
+      Object.keys(node.props).forEach((name) => {
+        setProp(element, name, node.props[name]);
+      });
     }
     return element;
   }

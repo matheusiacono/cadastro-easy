@@ -1,4 +1,4 @@
-/* globals describe it expect */
+/* globals describe it expect beforeEach */
 import DomGenerator from '.';
 import createVNode from '../create-v-node';
 
@@ -69,5 +69,39 @@ describe('DomGenerator.createElement', () => {
     const el = generator.createElement(vNode);
 
     expect(el.outerHTML).toEqual('<div><span></span>2</div>');
+  });
+
+  describe('set props to element', () => {
+    beforeEach(() => {
+      document.body.innerHTML = '';
+    });
+
+    it('should set props to element', () => {
+      const vNode = (
+        <div class="test">
+          <div />
+        </div>
+      );
+
+      const el = generator.createElement(vNode);
+      document.body.appendChild(el);
+      const elsWithClass = document.getElementsByClassName('test');
+
+      expect(elsWithClass).toHaveLength(1);
+    });
+
+    it('should set props to element and child element', () => {
+      const vNode = (
+        <div class="test">
+          <div class="test" />
+        </div>
+      );
+
+      const el = generator.createElement(vNode);
+      document.body.appendChild(el);
+      const elsWithClass = document.getElementsByClassName('test');
+
+      expect(elsWithClass).toHaveLength(2);
+    });
   });
 });
