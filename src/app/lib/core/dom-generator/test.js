@@ -103,5 +103,19 @@ describe('DomGenerator.createElement', () => {
 
       expect(elsWithClass).toHaveLength(2);
     });
+
+    it('should not set props of non-Object values', () => {
+      const divString = '<div></div>';
+      const vNode = createVNode('div', 'teste');
+      const vNode2 = createVNode('div', 3);
+      const vNode3 = createVNode('div');
+      const el = generator.createElement(vNode);
+      const el2 = generator.createElement(vNode2);
+      const el3 = generator.createElement(vNode3);
+
+      expect(el.outerHTML).toEqual(divString);
+      expect(el2.outerHTML).toEqual(divString);
+      expect(el3.outerHTML).toEqual(divString);
+    });
   });
 });

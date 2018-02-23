@@ -16,7 +16,7 @@ export default class DomGenerator {
         });
     }
 
-    if (node.props) {
+    if (node.props instanceof Object) {
       Object.keys(node.props).forEach((name) => {
         setProp(element, name, node.props[name]);
       });
