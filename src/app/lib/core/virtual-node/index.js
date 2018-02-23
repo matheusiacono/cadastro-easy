@@ -6,4 +6,8 @@ export default class VirtualNode {
     this.props = props;
     this.children = flatten(children);
   }
+
+  render() {
+    throw new Error(`render method not implemented for ${this.type}`);
+  }
 }
