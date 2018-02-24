@@ -3,7 +3,7 @@ import NumberMask from '../../lib/components/number-mask';
 import cpfMask from '../../utils/cpf-mask';
 
 export default class CpfInput extends VirtualNode {
-  render() {
-    return <NumberMask mask={cpfMask} {...this.props} />;
+  static render(props) {
+    return <NumberMask mask={cpfMask} {...props} />;
   }
 }

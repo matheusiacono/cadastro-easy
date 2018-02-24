@@ -2,9 +2,9 @@ import { VirtualNode, createVNode } from '../../lib';
 import './index.scss';
 
 export default class Loader extends VirtualNode {
-  render() {
+  static render(props) {
     return (
-      <div {...this.props} class="loader">
+      <div {...props} class="loader">
         <div />
         <div />
         <div />

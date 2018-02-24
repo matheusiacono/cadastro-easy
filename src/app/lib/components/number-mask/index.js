@@ -3,8 +3,8 @@ import applyMask from '../../utils/apply-mask';
 import NumberInput from '../number-input';
 
 export default class NumberMask extends VirtualNode {
-  render() {
-    const nodeProps = { ...this.props };
+  static render(props) {
+    const nodeProps = { ...props };
     const { oninput, mask } = nodeProps;
 
     delete nodeProps.oninput;

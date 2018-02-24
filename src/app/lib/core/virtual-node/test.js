@@ -6,11 +6,11 @@ describe('test VirtualNode class', () => {
     VirtualNode.clearActions();
   });
 
-  it('should create instance', () => {
+  it('should create node', () => {
     const type = 'a';
     const props = { x: 1 };
     const children = [];
-    const virtualNode = new VirtualNode(type, props, children);
+    const virtualNode = VirtualNode.create(type, props, children);
 
     expect(virtualNode.type).toEqual(type);
     expect(virtualNode.props).toEqual(props);
@@ -18,38 +18,34 @@ describe('test VirtualNode class', () => {
   });
 
   it('should throw error calling render()', () => {
-    const virtualNode = new VirtualNode('h1');
-
-    expect(virtualNode.render).toThrow();
+    expect(VirtualNode.render).toThrow();
   });
 
   describe('test Virtual Node global state', () => {
-    it('should share state between instances', () => {
+    it('should share state with child classes', () => {
       const testState = { foo: 'bar' };
-      const nodeA = new VirtualNode();
-      const nodeB = new VirtualNode();
+      class MyNode extends VirtualNode {}
 
-      nodeA.setState(testState);
+      VirtualNode.setState(testState);
 
-      expect(nodeB.getState()).toEqual(testState);
+      expect(MyNode.getState()).toEqual(testState);
     });
   });
 
   describe('test Virtual Node global actions', () => {
-    it('should share actions between instances', () => {
+    it('should share actions with child classes', () => {
       const mockFn = jest.fn();
       const testAction = {
         foo() {
           mockFn();
         },
       };
-      const nodeA = new VirtualNode();
-      const nodeB = new VirtualNode();
+      class MyNode extends VirtualNode {}
 
-      nodeA.setActions(testAction);
+      VirtualNode.setActions(testAction);
 
-      const bActions = nodeB.getActions();
-      bActions.foo();
+      const actions = MyNode.getActions();
+      actions.foo();
 
       expect(mockFn).toBeCalled();
     });
@@ -60,10 +56,10 @@ describe('test VirtualNode class', () => {
           expect(state).toEqual({});
         },
       };
-      const nodeA = new VirtualNode();
-      nodeA.setActions(testAction);
-      const aActions = nodeA.getActions();
-      aActions.foo();
+      class MyNode extends VirtualNode {}
+      MyNode.setActions(testAction);
+      const actions = MyNode.getActions();
+      actions.foo();
     });
 
     it('should change state when returned', () => {
@@ -72,12 +68,13 @@ describe('test VirtualNode class', () => {
       const testAction = {
         foo: () => testState,
       };
-      const nodeA = new VirtualNode();
-      nodeA.setActions(testAction);
-      const aActions = nodeA.getActions();
-      aActions.foo();
-      const aState = nodeA.getState();
-      expect(aState).toEqual(testState);
+      class MyNode extends VirtualNode {}
+      MyNode.setActions(testAction);
+      const actions = MyNode.getActions();
+
+      expect(MyNode.getState()).toEqual({});
+      actions.foo();
+      expect(MyNode.getState()).toEqual(testState);
     });
 
     it('should call reRender cb when return state', () => {
@@ -86,11 +83,11 @@ describe('test VirtualNode class', () => {
       };
       const mockFn = jest.fn();
 
-      const nodeA = new VirtualNode();
-      nodeA.reRender(mockFn);
-      nodeA.setActions(testAction);
-      const aActions = nodeA.getActions();
-      aActions.foo();
+      class MyNode extends VirtualNode {}
+      MyNode.reRender(mockFn);
+      MyNode.setActions(testAction);
+      const actions = MyNode.getActions();
+      actions.foo();
 
       expect(mockFn).toBeCalled();
     });

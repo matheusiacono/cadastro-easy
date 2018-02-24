@@ -2,6 +2,13 @@ import { App, VirtualNode, createVNode } from '../../../';
 import Route from '.';
 
 describe('test Route Component', () => {
+  const component = props =>
+    class extends VirtualNode {
+      static render() {
+        return <Route {...props} />;
+      }
+    };
+
   beforeEach(() => {
     document.body.innerHTML = '<div id="app"></div>';
   });
@@ -12,21 +19,25 @@ describe('test Route Component', () => {
   });
 
   it('should render', () => {
-    const route = <Route location={{ pathname: '/' }} path="/" render="div" />;
-    const app = new App(route, document.getElementById('app'));
+    const app = new App(
+      component({ location: { pathname: '/' }, path: '/', render: 'div' }),
+      document.getElementById('app'),
+    );
     app.run();
     expect(document.getElementById('app').innerHTML).toEqual('<div></div>');
   });
 
   it('should render component', () => {
-    class Component extends VirtualNode {
-      render() {
-        return <div {...this.props} />;
+    class MyComponent extends VirtualNode {
+      static render(props) {
+        return <div {...props} />;
       }
     }
 
-    const route = <Route location={{ pathname: '/' }} path="/" render={Component} />;
-    const app = new App(route, document.getElementById('app'));
+    const app = new App(
+      component({ location: { pathname: '/' }, path: '/', render: MyComponent }),
+      document.getElementById('app'),
+    );
     app.run();
     expect(document.getElementById('app').innerHTML).toEqual('<div></div>');
   });

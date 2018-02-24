@@ -1,7 +1,8 @@
 import { VirtualNode, createVNode } from '../../';
 
 export default class NumberInput extends VirtualNode {
-  render() {
+  static render(props) {
+    const nodeProps = { ...props };
     const onlyNumbers = (e) => {
       if (
         e.charCode > 0 &&
@@ -12,9 +13,9 @@ export default class NumberInput extends VirtualNode {
       }
     };
 
-    this.props.type = 'text';
-    this.props.onkeypress = e => onlyNumbers(e);
+    nodeProps.type = 'text';
+    nodeProps.onkeypress = e => onlyNumbers(e);
 
-    return <input {...this.props} />;
+    return <input {...nodeProps} />;
   }
 }

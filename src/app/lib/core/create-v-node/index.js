@@ -1,8 +1,8 @@
 import VirtualNode from '../virtual-node';
 
-const createVNode = (Type, props, ...children) =>
-  (Object.prototype.isPrototypeOf.call(VirtualNode, Type)
-    ? new Type(Type.name, props, children).render()
-    : new VirtualNode(Type, props, children));
+const createVNode = (type, props, ...children) =>
+  (Object.prototype.isPrototypeOf.call(VirtualNode, type)
+    ? type.render(props, children)
+    : VirtualNode.create(type, props, children));
 
 export default createVNode;

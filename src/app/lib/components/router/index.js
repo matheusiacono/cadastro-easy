@@ -1,5 +1,5 @@
 import Route from './route';
 import Link from './link';
-import location from './location';
+import Location from './location';
 
-export { Link, Route, location };
+export { Link, Route, Location };

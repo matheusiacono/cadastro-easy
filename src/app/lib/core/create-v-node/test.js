@@ -25,13 +25,13 @@ describe('test createVNode method', () => {
   it('should return VirtualNode', () => {
     const vNode = createVNode('a', {}, []);
 
-    expect(vNode instanceof VirtualNode).toBeTruthy();
+    expect(vNode).toEqual({ type: 'a', props: {}, children: [] });
   });
 
   it('should create vNode from component', () => {
     class MyDiv extends VirtualNode {
-      render() {
-        return <div {...this.props} />;
+      static render(props) {
+        return <div {...props} />;
       }
     }
 

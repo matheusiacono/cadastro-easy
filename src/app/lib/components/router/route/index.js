@@ -2,12 +2,12 @@ import verifyRoute from '../../../utils/verify-route';
 import { VirtualNode, createVNode } from '../../../';
 
 class Route extends VirtualNode {
-  render() {
-    const location = this.props.location || window.location;
-    const canRender = verifyRoute(this.props.path, location.pathname);
-    const Component = this.props.render;
+  static render(props) {
+    const location = props.location || window.location;
+    const canRender = verifyRoute(props.path, location.pathname);
+    const Component = props.render;
 
-    return canRender && <Component {...this.canRender} />;
+    return canRender && <Component {...canRender} />;
   }
 }
 

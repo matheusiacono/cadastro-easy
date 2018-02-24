@@ -1,15 +1,19 @@
 import NumberInput from '.';
-import { App, createVNode } from '../../';
+import { App, VirtualNode, createVNode } from '../../';
 
 describe('test NumberInput', () => {
+  class MyClass extends VirtualNode {
+    static render() {
+      return <NumberInput id="numberInput" />;
+    }
+  }
+
   beforeEach(() => {
     document.body.innerHTML = '<div id="app"></div>';
   });
 
   it('should render the component', () => {
-    const input = <NumberInput />;
-    const container = document.getElementById('app');
-    const app = new App(input, container);
+    const app = new App(NumberInput, document.getElementById('app'));
     expect(document.getElementsByTagName('input')).toHaveLength(0);
     app.run();
     expect(document.getElementsByTagName('input')).toHaveLength(1);
@@ -22,9 +26,8 @@ describe('test NumberInput', () => {
       charCode: 97,
       ctrlKey: false,
     };
-    const inputVNode = <NumberInput id="numberInput" />;
-    const container = document.getElementById('app');
-    const app = new App(inputVNode, container);
+
+    const app = new App(MyClass, document.getElementById('app'));
     app.run();
 
     const numberInput = document.getElementById('numberInput');
@@ -46,9 +49,8 @@ describe('test NumberInput', () => {
       charCode: 118,
       ctrlKey: true,
     };
-    const inputVNode = <NumberInput id="numberInput" />;
-    const container = document.getElementById('app');
-    const app = new App(inputVNode, container);
+
+    const app = new App(MyClass, document.getElementById('app'));
     app.run();
 
     const numberInput = document.getElementById('numberInput');
@@ -73,9 +75,8 @@ describe('test NumberInput', () => {
       charCode: 50,
       ctrlKey: false,
     };
-    const inputVNode = <NumberInput id="numberInput" />;
-    const container = document.getElementById('app');
-    const app = new App(inputVNode, container);
+
+    const app = new App(MyClass, document.getElementById('app'));
     app.run();
 
     const numberInput = document.getElementById('numberInput');

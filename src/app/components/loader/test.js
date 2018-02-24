@@ -1,4 +1,4 @@
-import { App, createVNode } from '../../lib';
+import { App } from '../../lib';
 import Loader from '.';
 
 describe('test loader component', () => {
@@ -7,8 +7,7 @@ describe('test loader component', () => {
   });
 
   it('should render', () => {
-    const loader = <Loader />;
-    const app = new App(loader, document.getElementById('app'));
+    const app = new App(Loader, document.getElementById('app'));
     app.run();
 
     const expected = '<div class="loader"><div></div><div></div><div></div><div></div></div>';

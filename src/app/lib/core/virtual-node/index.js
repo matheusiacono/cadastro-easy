@@ -4,31 +4,35 @@ import flatten from '../../utils/flatten';
 const globalState = new Store();
 const globalActions = new Store();
 export default class VirtualNode {
-  constructor(type, props, ...children) {
-    this.type = type;
-    this.props = props || {};
-    this.children = flatten(children);
-    this.globalState = globalState;
-    this.globalActions = globalActions;
+  static create(type, props, ...children) {
+    return {
+      type,
+      props: props || {},
+      children: flatten(children),
+    };
   }
 
-  getState() {
-    return this.globalState.getStore();
+  static render() {
+    throw new Error(`render method not implemented for ${this.name}`);
   }
 
-  setState(newState) {
-    this.globalState.setStore(newState);
+  static getState() {
+    return globalState.getStore();
   }
 
-  getActions() {
-    return this.globalActions.getStore();
+  static setState(newState) {
+    globalState.setStore(newState);
   }
 
-  setActions(newActions) {
-    this.globalActions.setStore(this.giveStateToActions(newActions));
+  static getActions() {
+    return globalActions.getStore();
   }
 
-  giveStateToActions(actions) {
+  static setActions(newActions) {
+    globalActions.setStore(this.giveStateToActions(newActions));
+  }
+
+  static giveStateToActions(actions) {
     const wiredActions = {};
     Object.keys(actions).forEach((key) => {
       const action = actions[key];
@@ -42,7 +46,7 @@ export default class VirtualNode {
         if (actionResult && !actionResult.then) {
           const newState = actionResult;
           this.setState(newState);
-          this.applyState();
+          VirtualNode.applyState();
         }
 
         return actionResult;
@@ -52,18 +56,14 @@ export default class VirtualNode {
     return wiredActions;
   }
 
-  applyState() {
-    if (this.globalActions.getStore().reRender) {
-      this.globalActions.getStore().reRender();
+  static applyState() {
+    if (globalActions.getStore().reRender) {
+      globalActions.getStore().reRender();
     }
   }
 
-  reRender(fn) {
-    this.globalActions.setStore({ reRender: fn });
-  }
-
-  render() {
-    throw new Error(`render method not implemented for ${this.type}`);
+  static reRender(fn) {
+    globalActions.setStore({ reRender: fn });
   }
 
   static clearState() {

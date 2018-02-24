@@ -3,7 +3,7 @@ import NumberMask from '../../lib/components/number-mask';
 import phoneMask from '../../utils/phone-mask';
 
 export default class PhoneInput extends VirtualNode {
-  render() {
-    return <NumberMask mask={phoneMask} {...this.props} />;
+  static render(props) {
+    return <NumberMask mask={phoneMask} {...props} />;
   }
 }

@@ -1,13 +1,13 @@
 import { VirtualNode, createVNode } from '../../../';
 
 export default class Link extends VirtualNode {
-  render() {
-    const { to } = this.props;
-    const newProps = { ...this.props };
-    const location = this.props.location || window.location;
+  static render(props, children) {
+    const { to } = props;
+    const nodeProps = { ...props };
+    const location = props.location || window.location;
 
-    newProps.href = to;
-    delete newProps.to;
+    nodeProps.href = to;
+    delete nodeProps.to;
 
     const clickHandler = (e) => {
       if (e.currentTarget.origin === location.origin) {
@@ -19,8 +19,8 @@ export default class Link extends VirtualNode {
       }
     };
 
-    newProps.onclick = clickHandler;
+    nodeProps.onclick = clickHandler;
 
-    return <a {...newProps}>{this.children}</a>;
+    return <a {...nodeProps}>{children}</a>;
   }
 }

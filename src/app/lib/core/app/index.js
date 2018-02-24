@@ -1,4 +1,5 @@
 import DomGenerator from '../dom-generator';
+import VirtualNode from '../virtual-node';
 
 export default class App {
   constructor(component, container) {
@@ -6,10 +7,10 @@ export default class App {
     this.container = container;
 
     this.generator = new DomGenerator();
-    this.component.reRender(() => this.run());
+    VirtualNode.reRender(() => this.run());
   }
 
   run() {
-    this.container = this.generator.generate(this.container, this.component);
+    this.container = this.generator.generate(this.container, this.component.render());
   }
 }
