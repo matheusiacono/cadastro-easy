@@ -127,9 +127,8 @@ describe('test DomGenerator.generate', () => {
 
   it('should generate dom elements from VirtualNode', () => {
     const div = <div />;
-    const container = document.getElementById('app');
-    generator.generate(container, div);
+    generator.generate(document.getElementById('app'), div);
 
-    expect(container.innerHTML).toEqual('<div></div>');
+    expect(document.getElementById('app').innerHTML).toEqual('<div></div>');
   });
 });

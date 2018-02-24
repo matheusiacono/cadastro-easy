@@ -15,12 +15,11 @@ describe('test App class', () => {
     document.body.innerHTML = '<div id="app"></div>';
 
     const div = <div />;
-    const container = document.getElementById('app');
-    const app = new App(div, container);
+    const app = new App(div, document.getElementById('app'));
 
     app.run();
 
-    expect(container.innerHTML).toEqual('<div></div>');
+    expect(document.getElementById('app').innerHTML).toEqual('<div></div>');
   });
 
   it('should call run method after reRender on the component been called', () => {

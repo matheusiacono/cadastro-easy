@@ -2,7 +2,14 @@ import setProp from '../../utils/set-prop';
 
 export default class DomGenerator {
   generate(parent, node) {
-    parent.appendChild(this.createElement(node));
+    const newParent = parent.cloneNode();
+    const frag = document.createDocumentFragment();
+    frag.appendChild(this.createElement(node));
+    newParent.innerHTML = '';
+    newParent.appendChild(frag);
+
+    parent.parentNode.replaceChild(newParent, parent);
+    return newParent;
   }
 
   createElement(node) {

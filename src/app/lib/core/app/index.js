@@ -10,6 +10,6 @@ export default class App {
   }
 
   run() {
-    this.generator.generate(this.container, this.component);
+    this.container = this.generator.generate(this.container, this.component);
   }
 }

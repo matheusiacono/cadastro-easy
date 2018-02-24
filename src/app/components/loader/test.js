@@ -8,10 +8,10 @@ describe('test loader component', () => {
 
   it('should render', () => {
     const loader = <Loader />;
-    const container = document.getElementById('app');
-    const app = new App(loader, container);
+    const app = new App(loader, document.getElementById('app'));
     app.run();
 
-    expect(container.innerHTML).toEqual('<div class="loader"><div></div><div></div><div></div><div></div></div>');
+    const expected = '<div class="loader"><div></div><div></div><div></div><div></div></div>';
+    expect(document.getElementById('app').innerHTML).toEqual(expected);
   });
 });
