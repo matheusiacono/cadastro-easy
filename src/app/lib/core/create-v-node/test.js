@@ -22,22 +22,35 @@ describe('test jsx syntax', () => {
 });
 
 describe('test createVNode method', () => {
-  it('should return VirtualNode', () => {
+  const component = props =>
+    class extends VirtualNode {
+      static render() {
+        return <div {...props} />;
+      }
+    };
+
+  it('should return create a node', () => {
     const vNode = createVNode('a', {}, []);
 
     expect(vNode).toEqual({ type: 'a', props: {}, children: [] });
   });
 
   it('should create vNode from component', () => {
-    class MyDiv extends VirtualNode {
-      static render(props) {
+    const vNode = component({ test: true }).render();
+
+    expect(vNode.type).toEqual('div');
+    expect(vNode.props).toEqual({ test: true });
+  });
+
+  it('should not read property of null', () => {
+    class Component extends VirtualNode {
+      static render({ test }) {
+        const props = { test };
         return <div {...props} />;
       }
     }
 
-    const vNode = <MyDiv test />;
-
-    expect(vNode.type).toEqual('div');
-    expect(vNode.props).toEqual({ test: true });
+    const vNode = <Component />;
+    expect(vNode).toEqual({ type: 'div', props: {}, children: [] });
   });
 });
