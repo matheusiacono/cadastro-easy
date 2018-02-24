@@ -34,6 +34,7 @@ export default class UserForm extends VirtualNode {
                 formState.name = e.target.value;
               }}
               value={formState.name}
+              aria-required="true"
             />
           </p>
 
@@ -47,6 +48,7 @@ export default class UserForm extends VirtualNode {
                 formState.cpf = value;
               }}
               value={formState.cpf}
+              aria-required="true"
             />
           </p>
 
@@ -60,6 +62,7 @@ export default class UserForm extends VirtualNode {
                 formState.phone = value;
               }}
               value={formState.phone}
+              aria-required="true"
             />
           </p>
 
@@ -74,6 +77,7 @@ export default class UserForm extends VirtualNode {
                 formState.email = e.target.value;
               }}
               value={formState.email}
+              aria-required="true"
             />
           </p>
 
