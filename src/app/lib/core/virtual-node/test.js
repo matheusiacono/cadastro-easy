@@ -8,13 +8,11 @@ describe('test VirtualNode class', () => {
 
   it('should create node', () => {
     const type = 'a';
-    const props = { x: 1 };
-    const children = [];
-    const virtualNode = VirtualNode.create(type, props, children);
+    const virtualNode = VirtualNode.create(type);
 
     expect(virtualNode.type).toEqual(type);
-    expect(virtualNode.props).toEqual(props);
-    expect(virtualNode.children).toEqual(children);
+    expect(virtualNode.props).toEqual({});
+    expect(virtualNode.children).toEqual([]);
   });
 
   it('should throw error calling render()', () => {
