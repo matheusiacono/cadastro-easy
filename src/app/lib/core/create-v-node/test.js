@@ -1,7 +1,7 @@
 import createVNode from '.';
 import VirtualNode from '../virtual-node';
 
-describe('jsx syntax', () => {
+describe('test jsx syntax', () => {
   it('should work', () => {
     const vNode = <div foo="bar" />;
 
@@ -21,15 +21,13 @@ describe('jsx syntax', () => {
   });
 });
 
-describe('createVNode', () => {
+describe('test createVNode method', () => {
   it('should return VirtualNode', () => {
     const vNode = createVNode('a', {}, []);
 
     expect(vNode instanceof VirtualNode).toBeTruthy();
   });
-});
 
-describe('use createVNode to create components', () => {
   it('should create vNode from component', () => {
     class MyDiv extends VirtualNode {
       render() {

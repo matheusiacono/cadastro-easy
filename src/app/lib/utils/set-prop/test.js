@@ -1,6 +1,6 @@
 import setProp from '.';
 
-describe('set props', () => {
+describe('test set props method', () => {
   it('should set class attribute', () => {
     const el = document.createElement('div');
     setProp(el, 'class', 'teste');

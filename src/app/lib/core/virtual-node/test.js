@@ -1,10 +1,11 @@
 import VirtualNode from '.';
 
-describe('Virtual Node', () => {
+describe('test VirtualNode class', () => {
   beforeEach(() => {
     VirtualNode.clearState();
     VirtualNode.clearActions();
   });
+
   it('should create instance', () => {
     const type = 'a';
     const props = { x: 1 };
@@ -22,7 +23,7 @@ describe('Virtual Node', () => {
     expect(virtualNode.render).toThrow();
   });
 
-  describe('Virtual Node global state', () => {
+  describe('test Virtual Node global state', () => {
     it('should share state between instances', () => {
       const testState = { foo: 'bar' };
       const nodeA = new VirtualNode();
@@ -34,7 +35,7 @@ describe('Virtual Node', () => {
     });
   });
 
-  describe('Virtual Node global actions', () => {
+  describe('test Virtual Node global actions', () => {
     it('should share actions between instances', () => {
       const mockFn = jest.fn();
       const testAction = {

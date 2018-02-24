@@ -1,6 +1,6 @@
 import applyMask from '.';
 
-describe('test apply mask', () => {
+describe('test apply mask method', () => {
   it('should return mask for string', () => {
     const value = '123';
     const mask = 'X';

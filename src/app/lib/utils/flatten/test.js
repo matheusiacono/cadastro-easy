@@ -1,6 +1,6 @@
 import flatten from '.';
 
-describe('flatten', () => {
+describe('test flatten', () => {
   it('should return the simple array', () => {
     const arrayTest = [1, 2, 3];
 

@@ -3,7 +3,7 @@ import createVNode from '../create-v-node';
 
 const TEXT_NODE_TYPE = 3;
 
-describe('DomGenerator.createElement', () => {
+describe('test DomGenerator.createElement', () => {
   const generator = new DomGenerator();
 
   it('should create an html element', () => {
@@ -119,7 +119,7 @@ describe('DomGenerator.createElement', () => {
   });
 });
 
-describe('DomGenerator.generate', () => {
+describe('test DomGenerator.generate', () => {
   const generator = new DomGenerator();
   beforeEach(() => {
     document.body.innerHTML = '<div id="app"></div>';

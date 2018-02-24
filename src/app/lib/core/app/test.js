@@ -1,7 +1,7 @@
 import App from '.';
 import createVNode from '../create-v-node';
 
-describe('App', () => {
+describe('test App class', () => {
   it('should create instance of App', () => {
     const component = createVNode('component');
     const container = 'container';
