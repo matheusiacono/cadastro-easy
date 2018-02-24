@@ -1,0 +1,39 @@
+$color: #000;
+$delta: -0.125;
+$size: 64px;
+$speed: 1.2s;
+
+@keyframes loading {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loader {
+  display: inline-block;
+  position: relative;
+  width: round($size);
+  height: round($size);
+
+  div {
+    box-sizing: border-box;
+    display: block;
+    position: absolute;
+    width: round($size * 0.8);
+    height: round($size * 0.8);
+    margin: round($size * 0.1);
+    border: round($size * 0.05) solid $color;
+    border-radius: 50%;
+    animation: loading 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    border-color: $color transparent transparent transparent;
+
+    @for $i from 1 through 3 {
+      &:nth-child(#{$i}) {
+        animation-delay: $delta * $i * $speed;
+      }
+    }
+  }
+}
