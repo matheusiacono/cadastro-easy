@@ -1,4 +1,3 @@
-/* globals jest describe it expect beforeEach */
 import NumberInput from '.';
 import { App, createVNode } from '../../';
 

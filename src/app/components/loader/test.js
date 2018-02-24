@@ -1,4 +1,3 @@
-/* globals describe it expect beforeEach */
 import { App, createVNode } from '../../lib';
 import Loader from '.';
 

@@ -1,4 +1,3 @@
-/* globals describe it expect */
 import createVNode from '.';
 import VirtualNode from '../virtual-node';
 

@@ -1,4 +1,3 @@
-/* globals describe it expect */
 import conformToMask from '.';
 
 describe('test conform to mask', () => {

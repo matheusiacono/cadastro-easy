@@ -1,4 +1,3 @@
-/* globals describe it expect beforeEach */
 import { App, VirtualNode, createVNode } from '../../../';
 import Route from '.';
 

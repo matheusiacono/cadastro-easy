@@ -1,4 +1,3 @@
-/* globals jest describe it expect beforeEach */
 import NumberMask from '.';
 import { App, createVNode } from '../../';
 

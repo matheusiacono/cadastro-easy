@@ -1,4 +1,3 @@
-/* globals jest describe it expect */
 import App from '.';
 import createVNode from '../create-v-node';
 

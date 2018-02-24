@@ -1,4 +1,3 @@
-/* globals describe it expect */
 import Store from '.';
 
 describe('test store object', () => {

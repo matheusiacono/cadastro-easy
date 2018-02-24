@@ -1,4 +1,3 @@
-/* globals describe it expect */
 import applyMask from '.';
 
 describe('test apply mask', () => {

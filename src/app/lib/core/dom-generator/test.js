@@ -1,4 +1,3 @@
-/* globals describe it expect beforeEach */
 import DomGenerator from '.';
 import createVNode from '../create-v-node';
 

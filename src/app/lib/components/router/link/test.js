@@ -1,4 +1,3 @@
-/* globals jest describe it expect beforeEach */
 import { App, createVNode } from '../../../';
 import Link from '.';
 

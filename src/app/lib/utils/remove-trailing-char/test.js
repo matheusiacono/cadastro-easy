@@ -1,4 +1,3 @@
-/* globals describe it expect */
 import removeTrailingChar from '.';
 
 describe('test verify route', () => {

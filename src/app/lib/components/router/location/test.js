@@ -1,4 +1,3 @@
-/* globals jest describe it expect */
 import Location from '.';
 
 describe('test location', () => {

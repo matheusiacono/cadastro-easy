@@ -1,4 +1,3 @@
-/* globals describe it expect */
 import flatten from '.';
 
 describe('flatten', () => {

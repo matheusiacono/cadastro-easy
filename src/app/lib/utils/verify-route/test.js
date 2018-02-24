@@ -1,4 +1,3 @@
-/* globals describe it expect */
 import verifyRoute from '.';
 
 describe('test verify route', () => {

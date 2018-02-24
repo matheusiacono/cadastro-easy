@@ -1,4 +1,3 @@
-/* globals describe it expect beforeEach jest */
 import VirtualNode from '.';
 
 describe('Virtual Node', () => {

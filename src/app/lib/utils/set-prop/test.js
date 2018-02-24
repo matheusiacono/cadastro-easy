@@ -1,4 +1,3 @@
-/* globals describe it expect jest */
 import setProp from '.';
 
 describe('set props', () => {
