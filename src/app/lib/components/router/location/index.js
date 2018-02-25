@@ -1,19 +1,11 @@
-export default class Location {
-  static actions() {
-    return {
-      updateLocation() {
-        return {};
-      },
-    };
-  }
-
-  static navigate(url) {
+const location = {
+  updateLocation: () => ({}),
+  navigate: (url) => {
     window.history.pushState(null, '', url);
-  }
-
-  static subscribe(actions) {
+  },
+  subscribeRouter: () => (state, { updateLocation }) => {
     function handleLocationChange() {
-      actions.updateLocation();
+      updateLocation();
     }
 
     const fn = window.history.pushState;
@@ -25,5 +17,7 @@ export default class Location {
 
     window.addEventListener('pushstate', handleLocationChange);
     window.addEventListener('popstate', handleLocationChange);
-  }
-}
+  },
+};
+
+export default location;
