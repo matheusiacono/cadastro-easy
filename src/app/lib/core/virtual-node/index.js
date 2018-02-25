@@ -8,7 +8,7 @@ export default class VirtualNode {
     return {
       type,
       props: props || {},
-      children: flatten(children),
+      children: flatten(children).filter(c => c != null && c !== false && c !== true),
     };
   }
 
@@ -34,8 +34,8 @@ export default class VirtualNode {
 
   static giveStateToActions(actions) {
     const wiredActions = {};
-    Object.keys(actions).forEach((key) => {
-      const action = actions[key];
+    Object.keys(actions).forEach((actionName) => {
+      const action = actions[actionName];
       const actualHandler = (payload) => {
         let actionResult = action(payload);
 
@@ -51,7 +51,7 @@ export default class VirtualNode {
 
         return actionResult;
       };
-      wiredActions[key] = actualHandler;
+      wiredActions[actionName] = actualHandler;
     });
     return wiredActions;
   }

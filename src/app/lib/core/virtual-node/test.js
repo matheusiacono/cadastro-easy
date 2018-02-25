@@ -19,6 +19,30 @@ describe('test VirtualNode class', () => {
     expect(VirtualNode.render).toThrow();
   });
 
+  it('should not have children with value undefined', () => {
+    const node = VirtualNode.create('div', {}, [undefined, 'test']);
+
+    expect(node.children).toHaveLength(1);
+  });
+
+  it('should not have children with value null', () => {
+    const node = VirtualNode.create('div', {}, [null, 'foo']);
+
+    expect(node.children).toHaveLength(1);
+  });
+
+  it('should not have children  with value false', () => {
+    const node = VirtualNode.create('div', {}, [false, 'bar']);
+
+    expect(node.children).toHaveLength(1);
+  });
+
+  it('should not have children  with value true', () => {
+    const node = VirtualNode.create('div', {}, [true, 'baz']);
+
+    expect(node.children).toHaveLength(1);
+  });
+
   describe('test Virtual Node global state', () => {
     it('should share state with child classes', () => {
       const testState = { foo: 'bar' };
