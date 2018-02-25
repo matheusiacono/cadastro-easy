@@ -1,6 +1,10 @@
 import setProp from '.';
 
 describe('test set props method', () => {
+  beforeEach(() => {
+    document.body.innerHTML = '';
+  });
+
   it('should set class attribute', () => {
     const el = document.createElement('div');
     setProp(el, 'class', 'teste');
@@ -35,5 +39,19 @@ describe('test set props method', () => {
     setProp(el, 'class');
 
     expect(el.className).toEqual('');
+  });
+
+  it('should not append event listeners to element', () => {
+    const el = document.createElement('button');
+    const mockClick = jest.fn();
+    setProp(el, 'id', 'btnTest');
+    setProp(el, 'onclick', mockClick);
+    setProp(el, 'onclick', mockClick);
+
+    document.body.appendChild(el);
+    const elToClick = document.getElementById('btnTest');
+    elToClick.click();
+
+    expect(mockClick).toHaveBeenCalledTimes(1);
   });
 });

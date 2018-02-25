@@ -1,8 +1,13 @@
 const setProp = (element, name, value) => {
+  const $el = element;
   if (typeof value === 'function') {
-    element.addEventListener(name.slice(2).toLowerCase(), value);
+    $el[name] = value;
   } else if (value) {
-    element.setAttribute(name, value);
+    $el.setAttribute(name, value);
+  }
+
+  if (value == null || value === false) {
+    $el.removeAttribute(name);
   }
 };
 
