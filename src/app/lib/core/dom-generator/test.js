@@ -4,18 +4,16 @@ import createVNode from '../create-v-node';
 const TEXT_NODE_TYPE = 3;
 
 describe('test DomGenerator.createElement', () => {
-  const generator = new DomGenerator();
-
   it('should create an html element', () => {
     const vNode = <div />;
-    const el = generator.createElement(vNode);
+    const el = DomGenerator.createElement(vNode);
 
     expect(el.tagName).toEqual('DIV');
   });
 
   it('should create an text node from a string', () => {
     const vNode = 'oi';
-    const el = generator.createElement(vNode);
+    const el = DomGenerator.createElement(vNode);
 
     expect(el.nodeType).toEqual(TEXT_NODE_TYPE);
     expect(el.textContent).toEqual(vNode);
@@ -23,7 +21,7 @@ describe('test DomGenerator.createElement', () => {
 
   it('should create an text node from a number', () => {
     const vNode = 3;
-    const el = generator.createElement(vNode);
+    const el = DomGenerator.createElement(vNode);
 
     expect(el.nodeType).toEqual(TEXT_NODE_TYPE);
     expect(el.textContent).toEqual(`${vNode}`);
@@ -37,7 +35,7 @@ describe('test DomGenerator.createElement', () => {
       </div>
     );
 
-    const el = generator.createElement(vNode);
+    const el = DomGenerator.createElement(vNode);
 
     expect(el.outerHTML).toEqual('<div><span></span>3</div>');
   });
@@ -51,7 +49,7 @@ describe('test DomGenerator.createElement', () => {
       </div>
     );
 
-    const el = generator.createElement(vNode);
+    const el = DomGenerator.createElement(vNode);
 
     expect(el.outerHTML).toEqual('<div><span></span>oi</div>');
   });
@@ -65,7 +63,7 @@ describe('test DomGenerator.createElement', () => {
       </div>
     );
 
-    const el = generator.createElement(vNode);
+    const el = DomGenerator.createElement(vNode);
 
     expect(el.outerHTML).toEqual('<div><span></span>2</div>');
   });
@@ -82,7 +80,7 @@ describe('test DomGenerator.createElement', () => {
         </div>
       );
 
-      const el = generator.createElement(vNode);
+      const el = DomGenerator.createElement(vNode);
       document.body.appendChild(el);
       const elsWithClass = document.getElementsByClassName('test');
 
@@ -96,7 +94,7 @@ describe('test DomGenerator.createElement', () => {
         </div>
       );
 
-      const el = generator.createElement(vNode);
+      const el = DomGenerator.createElement(vNode);
       document.body.appendChild(el);
       const elsWithClass = document.getElementsByClassName('test');
 
@@ -108,9 +106,9 @@ describe('test DomGenerator.createElement', () => {
       const vNode = createVNode('div', 'teste');
       const vNode2 = createVNode('div', 3);
       const vNode3 = createVNode('div');
-      const el = generator.createElement(vNode);
-      const el2 = generator.createElement(vNode2);
-      const el3 = generator.createElement(vNode3);
+      const el = DomGenerator.createElement(vNode);
+      const el2 = DomGenerator.createElement(vNode2);
+      const el3 = DomGenerator.createElement(vNode3);
 
       expect(el.outerHTML).toEqual(divString);
       expect(el2.outerHTML).toEqual(divString);
@@ -120,15 +118,56 @@ describe('test DomGenerator.createElement', () => {
 });
 
 describe('test DomGenerator.generate', () => {
-  const generator = new DomGenerator();
   beforeEach(() => {
     document.body.innerHTML = '<div id="app"></div>';
   });
 
   it('should generate dom elements from VirtualNode', () => {
     const div = <div />;
-    generator.generate(document.getElementById('app'), div);
+    DomGenerator.generate(document.getElementById('app'), div);
 
     expect(document.getElementById('app').innerHTML).toEqual('<div></div>');
+  });
+
+  it('should insert new div', () => {
+    const oldNode = <div />;
+
+    const element = DomGenerator.generate(document.getElementById('app'), oldNode, null, null);
+    const node = (
+      <div>
+        <div />
+      </div>
+    );
+
+    DomGenerator.generate(document.getElementById('app'), node, oldNode, element);
+
+    expect(document.getElementById('app').innerHTML).toEqual('<div><div></div></div>');
+  });
+
+  it('shoud render text', () => {
+    const node = 'foo';
+    DomGenerator.generate(document.getElementById('app'), node);
+
+    expect(document.getElementById('app').innerHTML).toEqual('foo');
+  });
+
+  it('should update only the texnode from the h1', () => {
+    const oldNode = (
+      <div>
+        <h1 id="title">Foo</h1>
+      </div>
+    );
+
+    const element = DomGenerator.generate(document.getElementById('app'), oldNode, null, null);
+    const title = document.getElementById('title');
+
+    const node = (
+      <div>
+        <h1 id="title">Bar</h1>
+      </div>
+    );
+    DomGenerator.generate(document.getElementById('app'), node, oldNode, element);
+
+    expect(title.innerHTML).toEqual('Bar');
   });
 });
