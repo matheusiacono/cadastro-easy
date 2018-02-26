@@ -24,7 +24,7 @@ Serão instalados todos os pacotes listados no campo `devDependencies` do arquiv
 
 Javascript :heart:
 
-O projeto utiliza `webpack` para automatizar o build, `babel` para utilizar as features mais novas do `JS` e `SASS` para extender o `CSS`.
+O projeto utiliza `webpack` para automatizar o build, `babel` para utilizar as features mais novas do `JS` e `SASS` para extender o `CSS`. O projeto foi desenvolvido executando no chrome e no firefox, não tive acesso ao edge nem ao safari durante o desenvolvimento.
 
 ### Pré-requisitos
 
