@@ -1,0 +1,13 @@
+@import "../../variables";
+
+.icon-delete:before {
+  content: "\2716";
+  cursor: pointer;
+  color: $invalid;
+}
+
+.icon-edit:before {
+  content: "\270E";
+  cursor: pointer;
+  color: $primary;
+}

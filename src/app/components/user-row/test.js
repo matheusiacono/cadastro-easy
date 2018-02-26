@@ -48,10 +48,10 @@ describe('test UserRow component', () => {
 
     app.run();
 
-    expect(document.getElementsByTagName('td')[0].textContent).toEqual('Test');
-    expect(document.getElementsByTagName('td')[1].textContent).toEqual('123.456.789-09');
-    expect(document.getElementsByTagName('td')[2].textContent).toEqual('(12) 34567-8900');
-    expect(document.getElementsByTagName('td')[3].textContent).toEqual('test@foo');
+    expect(document.getElementsByTagName('td')[1].textContent).toEqual('Test');
+    expect(document.getElementsByTagName('td')[2].textContent).toEqual('test@foo');
+    expect(document.getElementsByTagName('td')[3].textContent).toEqual('123.456.789-09');
+    expect(document.getElementsByTagName('td')[4].textContent).toEqual('(12) 34567-8900');
   });
 
   it('should pass the id to removeUser when the button is clicked', () => {
@@ -66,13 +66,37 @@ describe('test UserRow component', () => {
           id: 3,
         },
         removeUser: mockFn,
+        editUser: () => {},
       }),
       document.getElementById('app'),
     );
 
     app.run();
-    document.getElementsByTagName('button')[0].dispatchEvent(new window.Event('click'));
+    document.getElementsByTagName('a')[1].dispatchEvent(new window.Event('click'));
 
     expect(mockFn).toBeCalledWith(3);
+  });
+
+  it('should pass the id to removeUser when the button is clicked', () => {
+    const mockFn = jest.fn();
+    const app = new App(
+      component({
+        user: {
+          name: 'Test',
+          cpf: '12345678909',
+          phone: '12345678900',
+          email: 'test@foo',
+          id: 8,
+        },
+        removeUser: () => {},
+        editUser: mockFn,
+      }),
+      document.getElementById('app'),
+    );
+
+    app.run();
+    document.getElementsByTagName('a')[0].dispatchEvent(new window.Event('click'));
+
+    expect(mockFn).toBeCalledWith(8);
   });
 });
