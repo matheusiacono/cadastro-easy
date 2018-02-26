@@ -4,9 +4,9 @@
 
 > Desafio Proposto
 
-Cadastro simples de usuários em Javascript sem utilizar frameworks.
+Cadastro de usuários em Javascript sem utilizar frameworks.
 
-Minha intenção foi criar uma biblioteca que utiliza a sintaxe do `jsx` para criar interfaces.
+Minha intenção foi criar uma biblioteca que utiliza a sintaxe do `jsx` para criar interfaces. Além disso, a biblioteca utiliza nós virtuais para criar alterações no DOM, ela também mantém o estado da aplicação e permite sua alteração a partir de `actions` que quando retornam um estado provocam a verificação dos nós virtuais.
 
 ## Instalação
 
@@ -67,15 +67,9 @@ Os testes unitários e de integração entre os módulos utilizam o `jest` e pod
 npm test
 ```
 
-Já os testes E2E utilizam o `TestCafe` e o chrome para rodar, para utilizar outros browsers consulte [este endereço](http://devexpress.github.io/testcafe/documentation/using-testcafe/common-concepts/browsers/browser-support.html) que lista os browsers suportados e altere o alias no script `e2e` do arquivo `package.json`. O comando para executar os testes E2E são:
-
-```shell
-npm run e2e
-```
-
 ## Style guide
 
-O projeto utiliza o [style guide do airbnb](https://github.com/airbnb/javascript) para javascript com a sintaxe do `jsx` liberada. A ferramenta usada para o linting é o `eslint` e pode ser executada com o seguinte comando:
+O projeto utiliza o [style guide do airbnb](https://github.com/airbnb/javascript) para javascript com a sintaxe do `jsx` habilitada. A ferramenta usada para o linting é o `eslint` e pode ser executada com o seguinte comando:
 
 ```shell
 npm run lint
