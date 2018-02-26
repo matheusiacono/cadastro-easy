@@ -1,0 +1,23 @@
+@import "../../variables";
+
+.btn-create {
+  display: block;
+  float: right;
+
+  padding: 0.5em 0.8em;
+  margin-bottom: 1em;
+  border: 0.1em solid transparent;
+
+  font-size: 1em;
+  color: $primary-text;
+  font-weight: bold;
+
+  background-color: $primary;
+  border-radius: 2em;
+  cursor: pointer;
+  outline: none;
+
+  &:hover {
+    opacity: 0.7;
+  }
+}
