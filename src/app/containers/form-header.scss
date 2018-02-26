@@ -1,0 +1,25 @@
+@import "../variables";
+
+.go-back {
+  background-color: $disabled-text;
+
+  color: $primary-text;
+  font-size: 1em;
+  font-weight: bold;
+
+  padding: 1.5em 0.5em;
+  border-radius: 5em;
+  &:hover {
+    background-color: $focused;
+  }
+}
+
+.page-title {
+  text-align: center;
+  color: $primary;
+}
+
+.icon-back:before {
+  content: "\1f844";
+  cursor: pointer;
+}
