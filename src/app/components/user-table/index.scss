@@ -1,0 +1,124 @@
+@import "../../variables";
+$border-radius-size: 1em;
+
+table {
+  border-collapse: separate;
+  border-spacing: 0 1em;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  table-layout: fixed;
+
+  tr {
+    background: $without-focus;
+    padding: 0.35em;
+    border-radius: $border-radius-size;
+    color: #808080;
+
+    &:hover {
+      background: $disabled-text;
+    }
+  }
+
+  th,
+  td {
+    padding: 0.625em;
+    text-align: center;
+    border: solid 1px transparent;
+    border-style: solid none;
+
+    &:first-child {
+      border-left-style: solid;
+      border-top-left-radius: $border-radius-size;
+      border-bottom-left-radius: $border-radius-size;
+    }
+
+    &:last-child {
+      border-right-style: solid;
+      border-top-right-radius: $border-radius-size;
+      border-bottom-right-radius: $border-radius-size;
+    }
+  }
+
+  th {
+    font-size: 0.85em;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: $primary;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  table {
+    table-layout: auto;
+  }
+}
+
+@media screen and (max-width: 720px) {
+  table {
+    border: 0;
+
+    thead {
+      border: none;
+      clip: rect(0 0 0 0);
+      height: 1px;
+      margin: -1px;
+      overflow: hidden;
+      padding: 0;
+      position: absolute;
+      width: 1px;
+    }
+
+    tr {
+      display: block;
+      margin-bottom: 0.625em;
+    }
+
+    td {
+      border: 1px solid transparent;
+      display: block;
+      font-size: 0.8em;
+      text-align: right;
+
+      &:before {
+        content: attr(data-label);
+        float: left;
+        font-weight: bold;
+        text-transform: uppercase;
+      }
+
+      &:last-child {
+        border-bottom: 0;
+      }
+    }
+  }
+}
+
+.btn-request-users {
+  width: 20em;
+  height: 5em;
+  margin: 2em auto;
+  display: block;
+
+  padding: 0.5em 2em;
+  border: 0.1em solid transparent;
+  border-radius: 2.5em;
+
+  color: $primary-text;
+  font-size: 1em;
+  font-weight: bolder;
+
+  background-color: $primary;
+  cursor: pointer;
+  outline: none;
+
+  &:hover {
+    opacity: 0.7;
+  }
+}
+
+.empty-table-message {
+  margin: 0.5em auto;
+  text-align: center;
+  color: $invalid;
+}

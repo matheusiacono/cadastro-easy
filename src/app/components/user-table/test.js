@@ -1,7 +1,7 @@
 import { App, VirtualNode, createVNode } from '../../lib';
 import UserTable from '.';
 
-describe('test UserRow component', () => {
+describe('test UserTable component', () => {
   const component = props =>
     class extends VirtualNode {
       static render() {
@@ -76,9 +76,9 @@ describe('test UserRow component', () => {
       document.getElementById('app'),
     );
 
-    expect(document.getElementsByClassName('empty-table')).toHaveLength(0);
+    expect(document.getElementsByClassName('empty-table-message')).toHaveLength(0);
     app.run();
-    expect(document.getElementsByClassName('empty-table')).toHaveLength(1);
+    expect(document.getElementsByClassName('empty-table-message')).toHaveLength(1);
   });
 
   it('should render the Loader component', () => {
@@ -114,7 +114,7 @@ describe('test UserRow component', () => {
     );
 
     app.run();
-    document.getElementsByTagName('button')[0].dispatchEvent(new window.Event('click'));
+    document.getElementsByTagName('a')[1].dispatchEvent(new window.Event('click'));
 
     expect(mockFn).toBeCalledWith(3);
   });
