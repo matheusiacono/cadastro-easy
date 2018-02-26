@@ -36,8 +36,8 @@ export default class VirtualNode {
     const wiredActions = {};
     Object.keys(actions).forEach((actionName) => {
       const action = actions[actionName];
-      const actualHandler = (payload) => {
-        let actionResult = action(payload);
+      const actualHandler = (...payload) => {
+        let actionResult = action(...payload);
 
         if (typeof actionResult === 'function') {
           actionResult = actionResult(this.getState(), this.getActions());
