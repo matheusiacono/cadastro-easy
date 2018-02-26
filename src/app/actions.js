@@ -28,15 +28,15 @@ const actions = (db, request) => ({
     }),
 
   // Submit Form
-  redirectToHome: () => (state, { selectUsers, navigate }) => {
+  redirectToHome: () => ({ root }, { selectUsers, navigate }) => {
     selectUsers();
-    navigate('/');
+    navigate(root);
     return { submittingForm: false };
   },
 
   // Create User
-  redirectToCreate: () => (state, { navigate }) => {
-    setTimeout(() => navigate('/create'));
+  redirectToCreate: () => ({ root }, { navigate }) => {
+    setTimeout(() => navigate(`${root}create`));
     return {
       formState: {
         name: '',
@@ -70,8 +70,8 @@ const actions = (db, request) => ({
     });
   },
 
-  redirectToEdit: user => (state, { navigate }) => {
-    setTimeout(() => navigate(`/edit/${user.id}`));
+  redirectToEdit: user => ({ root }, { navigate }) => {
+    setTimeout(() => navigate(`${root}edit/${user.id}`));
     return { formState: user };
   },
 

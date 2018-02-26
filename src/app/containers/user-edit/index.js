@@ -6,17 +6,17 @@ import UserForm from '../../components/user-form';
 export default class UserEdit extends VirtualNode {
   static render({ id }) {
     const { editUser, navigate } = this.getActions();
-    const { formState, submittingForm } = this.getState();
+    const { formState, submittingForm, root } = this.getState();
 
     if (!formState.id || !id || Number.isNaN(parseInt(id, 10))) {
-      navigate('/');
+      navigate(root);
     }
 
     return (
       <div>
         <h1 class="page-title">Edição de Usuário {id}</h1>
         <p>
-          <Link class="go-back" to="/">
+          <Link class="go-back" to={root}>
             <i class="icon icon-back" /> Voltar
           </Link>
         </p>

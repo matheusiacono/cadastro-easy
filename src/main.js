@@ -16,11 +16,12 @@ const db = new Db('Aplicacao', 1, 'Cadastros');
 
 class Main extends VirtualNode {
   static render() {
+    const { root } = this.getState();
     return (
       <div>
-        <Route path="/" render={UserList} />
-        <Route path="/create" render={UserCreate} />
-        <Route path="/edit/:id" render={UserEdit} />
+        <Route path={`${root}`} render={UserList} />
+        <Route path={`${root}create`} render={UserCreate} />
+        <Route path={`${root}edit/:id`} render={UserEdit} />
       </div>
     );
   }
@@ -28,6 +29,12 @@ class Main extends VirtualNode {
 
 VirtualNode.setState(state);
 VirtualNode.setActions({ ...location, ...actions(db, getUsers) });
+VirtualNode.setState({
+  root:
+    window.location.pathname.slice(-1) === '/'
+      ? window.location.pathname
+      : `${window.location.pathname}/`,
+});
 
 const { loadUsers, subscribeRouter } = VirtualNode.getActions();
 subscribeRouter();

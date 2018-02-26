@@ -6,13 +6,13 @@ import UserForm from '../../components/user-form';
 export default class UserCreate extends VirtualNode {
   static render() {
     const { addUser } = this.getActions();
-    const { submittingForm } = this.getState();
+    const { submittingForm, root } = this.getState();
 
     return (
       <div>
         <h1 class="page-title">Novo Usuário</h1>
         <p>
-          <Link class="go-back" to="/">
+          <Link class="go-back" to={root}>
             <i class="icon icon-back" /> Voltar
           </Link>
         </p>

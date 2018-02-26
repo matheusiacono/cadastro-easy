@@ -12,7 +12,6 @@ module.exports = {
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
-    publicPath: '/',
   },
   module: {
     rules: [
@@ -54,4 +53,5 @@ module.exports = {
   devServer: {
     historyApiFallback: true,
   },
+  devtool: 'source-map',
 };
