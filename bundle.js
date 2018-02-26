@@ -2336,8 +2336,9 @@ var actions = function actions(db, request) {
 
     // Create User
     redirectToCreate: function redirectToCreate() {
-      return function (state, _ref7) {
-        var navigate = _ref7.navigate;
+      return function (_ref7, _ref8) {
+        var root = _ref7.root;
+        var navigate = _ref8.navigate;
 
         setTimeout(function () {
           return navigate(root + 'create');
@@ -2361,8 +2362,8 @@ var actions = function actions(db, request) {
     },
 
     addUser: function addUser(user) {
-      return function (state, _ref8) {
-        var insertUser = _ref8.insertUser;
+      return function (state, _ref9) {
+        var insertUser = _ref9.insertUser;
 
         setTimeout(function () {
           return insertUser(user);
@@ -2372,8 +2373,8 @@ var actions = function actions(db, request) {
     },
 
     insertUser: function insertUser(user) {
-      return function (state, _ref9) {
-        var redirectToHome = _ref9.redirectToHome;
+      return function (state, _ref10) {
+        var redirectToHome = _ref10.redirectToHome;
 
         db.insert(user).then(function () {
           return redirectToHome();
@@ -2383,8 +2384,8 @@ var actions = function actions(db, request) {
 
     // Edit User
     getUser: function getUser(id) {
-      return function (state, _ref10) {
-        var redirectToEdit = _ref10.redirectToEdit;
+      return function (state, _ref11) {
+        var redirectToEdit = _ref11.redirectToEdit;
 
         db.select(id).then(function (user) {
           redirectToEdit(user);
@@ -2393,9 +2394,9 @@ var actions = function actions(db, request) {
     },
 
     redirectToEdit: function redirectToEdit(user) {
-      return function (_ref11, _ref12) {
-        var root = _ref11.root;
-        var navigate = _ref12.navigate;
+      return function (_ref12, _ref13) {
+        var root = _ref12.root;
+        var navigate = _ref13.navigate;
 
         setTimeout(function () {
           return navigate(root + 'edit/' + user.id);
@@ -2405,8 +2406,8 @@ var actions = function actions(db, request) {
     },
 
     editUser: function editUser(user, id) {
-      return function (state, _ref13) {
-        var updateUser = _ref13.updateUser;
+      return function (state, _ref14) {
+        var updateUser = _ref14.updateUser;
 
         setTimeout(function () {
           return updateUser(user, id);
@@ -2416,8 +2417,8 @@ var actions = function actions(db, request) {
     },
 
     updateUser: function updateUser(user, id) {
-      return function (state, _ref14) {
-        var redirectToHome = _ref14.redirectToHome;
+      return function (state, _ref15) {
+        var redirectToHome = _ref15.redirectToHome;
 
         db.update(user, id).then(function () {
           return redirectToHome();
