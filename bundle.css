@@ -71,7 +71,6 @@ table {
     border: 0; }
     table thead {
       border: none;
-      clip: rect(0 0 0 0);
       height: 1px;
       margin: -1px;
       overflow: hidden;
@@ -82,17 +81,15 @@ table {
       display: block;
       margin-bottom: 0.625em; }
     table td {
-      border: 1px solid transparent;
       display: block;
-      font-size: 0.8em;
       text-align: right; }
       table td:before {
         content: attr(data-label);
         float: left;
         font-weight: bold;
         text-transform: uppercase; }
-      table td:last-child {
-        border-bottom: 0; } }
+      table td:first-child, table td:last-child {
+        text-align: center; } }
 
 .btn-request-users {
   width: 20em;
