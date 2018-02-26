@@ -60,7 +60,6 @@ table {
 
     thead {
       border: none;
-      clip: rect(0 0 0 0);
       height: 1px;
       margin: -1px;
       overflow: hidden;
@@ -75,9 +74,7 @@ table {
     }
 
     td {
-      border: 1px solid transparent;
       display: block;
-      font-size: 0.8em;
       text-align: right;
 
       &:before {
@@ -87,8 +84,9 @@ table {
         text-transform: uppercase;
       }
 
+      &:first-child,
       &:last-child {
-        border-bottom: 0;
+        text-align: center;
       }
     }
   }
