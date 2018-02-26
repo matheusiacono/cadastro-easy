@@ -784,12 +784,15 @@ var Main = function (_VirtualNode) {
   _createClass(Main, null, [{
     key: 'render',
     value: function render() {
+      var _getState = this.getState(),
+          root = _getState.root;
+
       return (0, _lib.createVNode)(
         'div',
         null,
-        (0, _lib.createVNode)(_router.Route, { path: '/', render: _userList2.default }),
-        (0, _lib.createVNode)(_router.Route, { path: '/create', render: _userCreate2.default }),
-        (0, _lib.createVNode)(_router.Route, { path: '/edit/:id', render: _userEdit2.default })
+        (0, _lib.createVNode)(_router.Route, { path: '' + root, render: _userList2.default }),
+        (0, _lib.createVNode)(_router.Route, { path: root + 'create', render: _userCreate2.default }),
+        (0, _lib.createVNode)(_router.Route, { path: root + 'edit/:id', render: _userEdit2.default })
       );
     }
   }]);
@@ -799,6 +802,9 @@ var Main = function (_VirtualNode) {
 
 _lib.VirtualNode.setState(_state2.default);
 _lib.VirtualNode.setActions(_extends({}, _router.location, (0, _actions2.default)(db, _getUsers2.default)));
+_lib.VirtualNode.setState({
+  root: window.location.pathname.slice(-1) === '/' ? window.location.pathname : window.location.pathname + '/'
+});
 
 var _VirtualNode$getActio = _lib.VirtualNode.getActions(),
     loadUsers = _VirtualNode$getActio.loadUsers,
@@ -2454,3 +2460,4 @@ exports.default = initialState;
 
 /***/ })
 /******/ ]);
+//# sourceMappingURL=bundle.js.map
