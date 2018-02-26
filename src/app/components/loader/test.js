@@ -10,7 +10,7 @@ describe('test loader component', () => {
     const app = new App(Loader, document.getElementById('app'));
     app.run();
 
-    const expected = '<div class="loader"><div></div><div></div><div></div><div></div></div>';
+    const expected = '<div class="loader"><div></div><div></div><div></div></div>';
     expect(document.getElementById('app').innerHTML).toEqual(expected);
   });
 });

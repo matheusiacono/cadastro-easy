@@ -8,7 +8,6 @@ export default class Loader extends VirtualNode {
         <div />
         <div />
         <div />
-        <div />
       </div>
     );
   }

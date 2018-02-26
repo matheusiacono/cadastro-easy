@@ -1,6 +1,6 @@
-$color: #000;
+$color: #fff;
 $delta: -0.125;
-$size: 64px;
+$size: 60px;
 $speed: 1.2s;
 
 @keyframes loading {
@@ -27,7 +27,7 @@ $speed: 1.2s;
     margin: round($size * 0.1);
     border: round($size * 0.05) solid $color;
     border-radius: 50%;
-    animation: loading 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    animation: loading $speed cubic-bezier(0.5, 0, 0.5, 1) infinite;
     border-color: $color transparent transparent transparent;
 
     @for $i from 1 through 3 {
