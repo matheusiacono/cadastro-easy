@@ -1689,7 +1689,8 @@ var UserCreate = function (_VirtualNode) {
           addUser = _getActions.addUser;
 
       var _getState = this.getState(),
-          submittingForm = _getState.submittingForm;
+          submittingForm = _getState.submittingForm,
+          root = _getState.root;
 
       return (0, _lib.createVNode)(
         'div',
@@ -1704,7 +1705,7 @@ var UserCreate = function (_VirtualNode) {
           null,
           (0, _lib.createVNode)(
             _router.Link,
-            { 'class': 'go-back', to: '/' },
+            { 'class': 'go-back', to: root },
             (0, _lib.createVNode)('i', { 'class': 'icon icon-back' }),
             ' Voltar'
           )
@@ -2049,10 +2050,11 @@ var UserEdit = function (_VirtualNode) {
 
       var _getState = this.getState(),
           formState = _getState.formState,
-          submittingForm = _getState.submittingForm;
+          submittingForm = _getState.submittingForm,
+          root = _getState.root;
 
       if (!formState.id || !id || Number.isNaN(parseInt(id, 10))) {
-        navigate('/');
+        navigate(root);
       }
 
       return (0, _lib.createVNode)(
@@ -2069,7 +2071,7 @@ var UserEdit = function (_VirtualNode) {
           null,
           (0, _lib.createVNode)(
             _router.Link,
-            { 'class': 'go-back', to: '/' },
+            { 'class': 'go-back', to: root },
             (0, _lib.createVNode)('i', { 'class': 'icon icon-back' }),
             ' Voltar'
           )
@@ -2321,23 +2323,24 @@ var actions = function actions(db, request) {
 
     // Submit Form
     redirectToHome: function redirectToHome() {
-      return function (state, _ref5) {
-        var selectUsers = _ref5.selectUsers,
-            navigate = _ref5.navigate;
+      return function (_ref5, _ref6) {
+        var root = _ref5.root;
+        var selectUsers = _ref6.selectUsers,
+            navigate = _ref6.navigate;
 
         selectUsers();
-        navigate('/');
+        navigate(root);
         return { submittingForm: false };
       };
     },
 
     // Create User
     redirectToCreate: function redirectToCreate() {
-      return function (state, _ref6) {
-        var navigate = _ref6.navigate;
+      return function (state, _ref7) {
+        var navigate = _ref7.navigate;
 
         setTimeout(function () {
-          return navigate('/create');
+          return navigate(root + 'create');
         });
         return {
           formState: {
@@ -2358,8 +2361,8 @@ var actions = function actions(db, request) {
     },
 
     addUser: function addUser(user) {
-      return function (state, _ref7) {
-        var insertUser = _ref7.insertUser;
+      return function (state, _ref8) {
+        var insertUser = _ref8.insertUser;
 
         setTimeout(function () {
           return insertUser(user);
@@ -2369,8 +2372,8 @@ var actions = function actions(db, request) {
     },
 
     insertUser: function insertUser(user) {
-      return function (state, _ref8) {
-        var redirectToHome = _ref8.redirectToHome;
+      return function (state, _ref9) {
+        var redirectToHome = _ref9.redirectToHome;
 
         db.insert(user).then(function () {
           return redirectToHome();
@@ -2380,8 +2383,8 @@ var actions = function actions(db, request) {
 
     // Edit User
     getUser: function getUser(id) {
-      return function (state, _ref9) {
-        var redirectToEdit = _ref9.redirectToEdit;
+      return function (state, _ref10) {
+        var redirectToEdit = _ref10.redirectToEdit;
 
         db.select(id).then(function (user) {
           redirectToEdit(user);
@@ -2390,19 +2393,20 @@ var actions = function actions(db, request) {
     },
 
     redirectToEdit: function redirectToEdit(user) {
-      return function (state, _ref10) {
-        var navigate = _ref10.navigate;
+      return function (_ref11, _ref12) {
+        var root = _ref11.root;
+        var navigate = _ref12.navigate;
 
         setTimeout(function () {
-          return navigate('/edit/' + user.id);
+          return navigate(root + 'edit/' + user.id);
         });
         return { formState: user };
       };
     },
 
     editUser: function editUser(user, id) {
-      return function (state, _ref11) {
-        var updateUser = _ref11.updateUser;
+      return function (state, _ref13) {
+        var updateUser = _ref13.updateUser;
 
         setTimeout(function () {
           return updateUser(user, id);
@@ -2412,8 +2416,8 @@ var actions = function actions(db, request) {
     },
 
     updateUser: function updateUser(user, id) {
-      return function (state, _ref12) {
-        var redirectToHome = _ref12.redirectToHome;
+      return function (state, _ref14) {
+        var redirectToHome = _ref14.redirectToHome;
 
         db.update(user, id).then(function () {
           return redirectToHome();
